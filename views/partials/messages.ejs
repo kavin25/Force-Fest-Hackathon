@@ -1,0 +1,65 @@
+<% if(locals.errors){ %> <% errors.forEach(function(error) { %>
+<div
+  style="
+    width: 100%;
+    background-color: rgba(235, 104, 100, 0.5);
+    padding-left: 0.5rem;
+    border: 2px solid #eb6864;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-radius: 5px;
+  "
+>
+  <%= error.msg %>
+</div>
+<% }); %> <% } %> <% if(success_msg != ''){ %>
+<div
+  style="
+    width: 100%;
+    background-color: rgba(235, 104, 100, 0.5);
+    padding-left: 0.5rem;
+    border: 2px solid #eb6864;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-radius: 5px;
+  "
+>
+  <%= success_msg %>
+</div>
+<% } %> <% if(error_msg != ''){ %>
+<div
+  style="
+    width: 100%;
+    background-color: rgba(235, 104, 100, 0.5);
+    padding-left: 0.5rem;
+    border: 2px solid #eb6864;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-radius: 5px;
+  "
+>
+  <%= error_msg %>
+</div>
+<% } %> <% if(error != ''){ %>
+<div
+  style="
+    width: 100%;
+    background-color: rgba(235, 104, 100, 0.5);
+    padding-left: 0.5rem;
+    border: 2px solid #eb6864;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-radius: 5px;
+  "
+>
+  <%= error %>
+</div>
+<% } %>

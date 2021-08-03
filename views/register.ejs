@@ -1,0 +1,156 @@
+    <div class="login-card-out">
+      <h1 style="text-align: center" class="login-h1">
+        <i class="fas fa-user-plus"></i> Register
+      </h1>
+      <%- include ("./partials/messages"); %>
+      <div class="login-card">
+        <form action="/users/register" method="POST">
+          <div style="margin-top: 1rem;" class="login-div">
+            <label for="name">Name</label>
+            <input
+              type="name"
+              id="name"
+              name="name"
+              class="login-input"
+              placeholder="Enter Name"
+              value="<%= typeof name != 'undefined' ? name : '' %>"
+            />
+          </div>
+          <div class="login-div">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              class="login-input"
+              placeholder="Enter Email"
+              value="<%= typeof email != 'undefined' ? email : '' %>"
+            />
+          </div>
+          <div class="login-div">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              class="login-input"
+              placeholder="Create Password"
+              value="<%= typeof password != 'undefined' ? password : '' %>"
+            />
+          </div>
+          <div class="login-div">
+            <label for="password2">Confirm Password</label>
+            <input
+              type="password"
+              id="password2"
+              name="password2"
+              class="login-input"
+              placeholder="Confirm Password"
+              value="<%= typeof password2 != 'undefined' ? password2 : '' %>"
+            />
+          </div>
+          <div class="login-div">
+          <label for="person">Select</label>
+          <select class="login-input" name="person" id="person">
+            <option value="student">Student</option>
+            <option value="Teacher">Teacher</option>
+          </select>
+        </div>
+        
+        <div class="login-div">
+          <label for="teacherSub">Select a Subject(Only for Teachers)</label>
+          <select class="login-input" name="teacherSub" id="teacherSub" value="<% typeof teacherSub != 'undefined' ? teacherSub : '' %>">
+            <option value="" disabled selected hidden>Choose a Subject</option>
+            <option value="Hindi">Hindi</option>
+            <option value="English">English</option>
+            <option value="Maths">Maths</option>
+            <option value="Science">Science</option>
+            <option value="SST">SST</option>
+            <option value="French">French</option>
+            <option value="German">German</option>
+            <option value="Spanish">Spanish</option>
+            <option value="Sanskrit">Sanskrit</option>
+          </select>
+  
+        </div>
+          <button type="submit" class="login-submit-btn">
+            Register
+          </button>
+        </form>
+        <p class="bottom-text">Have An Account? <a href="/users/login">Login</a></p>
+      </div>
+    </div>
+  </div>
+  
+          
+  
+      </div>
+        
+        <!-- <h1>
+          <i class="fas fa-user-plus"></i> Register
+        </h1>
+        <%- include ("./partials/messages"); %>
+           <form action="/users/register" method="POST">
+            <label for="name">Name</label>
+            <input
+              type="name"
+              id="name"
+              name="name"
+              class="form-control"
+              placeholder="Enter Name"
+              value="<%= typeof name != 'undefined' ? name : '' %>"
+            />
+            <label for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              class="form-control"
+              placeholder="Enter Email"
+              value="<%= typeof email != 'undefined' ? email : '' %>"
+            />
+            <label for="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              class="form-control"
+              placeholder="Create Password"
+              value="<%= typeof password != 'undefined' ? password : '' %>"
+            />
+            <label for="password2">Confirm Password</label>
+            <input
+              type="password"
+              id="password2"
+              name="password2"
+              class="form-control"
+              placeholder="Confirm Password"
+              value="<%= typeof password2 != 'undefined' ? password2 : '' %>"
+            />
+            <label for="person">Select</label>
+            <select name="person" id="person">
+              <option value="student">Student</option>
+              <option value="Teacher">Teacher</option>
+            </select>
+
+            <select name="teacherSub" id="teacherSub" value="<% typeof teacherSub != 'undefined' ? teacherSub : '' %>">
+              <option value="" disabled selected hidden>Choose a Subject</option>
+              <option value="Hindi">Hindi</option>
+              <option value="English">English</option>
+              <option value="Maths">Maths</option>
+              <option value="Science">Science</option>
+              <option value="SST">SST</option>
+              <option value="French">French</option>
+              <option value="German">German</option>
+              <option value="Spanish">Spanish</option>
+              <option value="Sanskrit">Sanskrit</option>
+            </select>
+          <button type="submit">
+            Register
+          </button>
+        </form>
+        <p>Have An Account? <a href="/users/login">Login</a></p>
+      </div>
+    </div>
+  </div>
+   -->
