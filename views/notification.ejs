@@ -1,0 +1,124 @@
+<div class="nav-out">
+  <div class="navbar">
+    <div class="logo">
+      <img src="../images/logo" alt="onno the image didnt load" />
+    </div>
+    <div class="links">
+      <a class="nav-link" href="/">Home</a>
+      <a class="nav-link" href="/about">About</a>
+      <a class="nav-link" href="/users/logout">Logout</a>
+    </div>
+  </div>
+</div>
+
+<div class="left-nav">
+  <div class="left-nav-div">
+    <a href="/dashboard">Dashboard</a>
+    <a href="/dashboard/transport">Transport</a>
+    <a href="/dashboard/vaccination">Vaccination</a>
+    <!-- <a href="/dashboard/contact">Contact</a> -->
+    <a id="page" href="/dashboard/schedule">Notification</a>
+    <a href="/dashboard/articles">Promotions</a>
+  </div>
+</div>
+
+<div class="dash-main-div-heading">
+  <h1>Set your own Schedule</h1>
+  <p>Welcome, <%= data.user.name %></p>
+</div>
+
+<div class="notifs-form">
+  <form action="" method="POST">
+    <div style="display: none" class="form-div">
+      <label for="text">Name</label> <br />
+      <input
+        type="text"
+        name="title"
+        id="title"
+        value="<%= data.user.name %>"
+      />
+    </div>
+    <div class="form-div">
+      <label for="textarea">Enter your task</label> <br />
+      <input
+        class="notifs-textarea"
+        name="textOp"
+        id="textOp"
+        placeholder="Enter your task"
+        type="text"
+      />
+    </div>
+    <div class="form-div">
+      <label for="number">Reminder Time </label>
+      <input style="margin-bottom: 1rem" type="time" name="time" id="time" />
+    </div>
+
+    <input class="api-submit" type="submit" value="Add" />
+  </form>
+
+  <h2 style="margin-top: 1rem; text-align: center; margin-bottom: 1rem">
+    Your Schedule
+  </h2>
+
+  <div class="notifs-list-div">
+    <% data1.forEach(function(data1){ %>
+    <div class="notifs-list-text">
+      <span style="padding-top: 0.15rem"
+        ><%= data1.time %> - <%= data1.textOp %></span
+      >
+      <form
+        action="/dashboard/schedule/<%= data1.id %>?_method=DELETE"
+        method="POST"
+        class="d-inline"
+      >
+        <button type="submit" class="notifs-sched-btn">
+          <i class="fa fa-close" style="font-size: 24px"></i>
+        </button>
+      </form>
+    </div>
+    <% }) %>
+  </div>
+</div>
+
+<p style="display: none" class="op"><%= JSON.stringify(data1) %></p>
+
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/push.js/1.0.8/push.min.js"
+  integrity="sha512-eiqtDDb4GUVCSqOSOTz/s/eiU4B31GrdSb17aPAA4Lv/Cjc8o+hnDvuNkgXhSI5yHuDvYkuojMaQmrB5JB31XQ=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+></script>
+
+<script>
+  const date = new Date();
+  currentHours = date.getHours();
+  currentHours = ("0" + currentHours).slice(-2);
+  const time = currentHours + ":" + date.getMinutes();
+  const datagg = document.querySelector(".op").textContent;
+  const nice = JSON.parse(datagg);
+
+  for (let i = 0; i < nice.length; i++) {
+    console.log(time);
+    console.log(nice[i].time);
+    if (time === nice[i].time) {
+      if (Notification.permission === "granted") {
+        const notification = new Notification(`Reminder: ${nice[i].textOp}`, {
+          body: `Its ${nice[i].time}: Remember to ${nice[i].textOp} ;)`,
+        });
+      } else if (Notification.permission !== "denied") {
+        Notification.requestPermission().then((permission) => {
+          if (permission === "granted") {
+            const notification = new Notification(
+              `Reminder: ${nice[i].textOp}`,
+              {
+                body: `Its ${nice[i].time}: Remember to ${nice[i].textOp} ;)`,
+              }
+            );
+          }
+        });
+      }
+    }
+  }
+
+  // }
+</script>

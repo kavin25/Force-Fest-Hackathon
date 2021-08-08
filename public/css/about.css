@@ -1,0 +1,138 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300&display=swap");
+
+body {
+  font-family: "Nunito Sans", sans-serif;
+  margin: 0;
+}
+
+.nav-out {
+  padding: 1rem;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+#page {
+  font-weight: bold;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.logo img {
+  height: 5rem;
+  border-radius: 10px;
+  margin-left: 2.5rem;
+  cursor: pointer;
+}
+
+.scroll {
+  background-color: #333;
+  color: whitesmoke;
+  transition-duration: 0.5s;
+  z-index: 1;
+}
+
+.scroll .navbar .links a {
+  color: whitesmoke;
+}
+
+.links {
+  margin-right: 3rem;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.nav-link {
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  margin-left: 0.7rem;
+  border-radius: 5px;
+  font-size: 1.3rem;
+  color: #333;
+}
+
+.nav-link:hover {
+  transition-duration: 0.7s;
+  background-color: #8dd1c6;
+  color: whitesmoke;
+}
+
+.section-5-big-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 2rem;
+}
+
+.fa-facebook,
+.fa-twitter,
+.fa-linkedin,
+.fa-youtube {
+  margin: 1rem;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+.fa-facebook:hover {
+  color: #4267b2;
+}
+.fa-twitter:hover {
+  color: #00acee;
+}
+.fa-linkedin:hover {
+  color: #0077b5;
+}
+.fa-youtube:hover {
+  color: #ff0000;
+}
+
+.section-5-big-div-right-div-h2 {
+  text-align: center;
+  font-size: 1.3rem;
+  font-family: monospace;
+}
+.section-5-big-div-left-div-h2 {
+  font-size: 1.8rem;
+}
+
+.section-5-big-div-left-div-p {
+  font-size: 1rem;
+}
+
+.footer {
+  margin-top: 5rem;
+  background-color: #8dd1c6;
+  color: white;
+}
+
+/* -------------------------------------------------------------------------------------------------------------- */
+.div-main-inner {
+  margin-top: 2rem;
+  width: 80%;
+  margin-left: 6rem;
+  border: 1px solid black;
+  display: flex;
+  padding: 2rem;
+}
+
+.div-main-inner img {
+  width: 11rem;
+  /* border-radius: 50%; */
+  margin-left: 3rem;
+}
+
+.div-main-inner2 {
+  /* width: 60%; */
+  margin-left: 5rem;
+}
+
+.about-below-p {
+  margin-left: 6rem;
+  margin-right: 9rem;
+  line-height: 1.5;
+  text-align: justify;
+}

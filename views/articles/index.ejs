@@ -1,0 +1,51 @@
+<div class="nav-out">
+  <div class="navbar">
+    <div class="logo">
+      <img src="/../../images/logo" alt="onno the image didnt load" />
+    </div>
+    <div class="links">
+      <a class="nav-link" href="/">Home</a>
+      <a class="nav-link" href="/about">About</a>
+      <a class="nav-link" href="/users/logout">Logout</a>
+    </div>
+  </div>
+</div>
+
+<div class="left-nav">
+  <div class="left-nav-div">
+    <a href="/dashboard">Dashboard</a>
+    <a href="/dashboard/transport">Transport</a>
+    <a href="/dashboard/vaccination">Vaccination</a>
+    <!-- <a href="/dashboard/contact">Contact</a> -->
+    <a href="/dashboard/schedule">Notification</a>
+    <a  id="page" href="/dashboard/articles">Promotions</a>
+  </div>
+</div>
+
+<div class="blog-main-h1">
+  <h1>Blogs</h1>
+  <a href="/dashboard/articles/new">Add New Article</a>
+</div>
+
+<% articles.forEach(article => { %>
+  <div class="main-articles-big-div">
+    <div class="blog-card-inner">
+      <h4 class="blog-title"><%= article.title %></h4>
+      <div class="blog-date"><%= article.createdAt.toLocaleDateString() %></div>
+      <div class="blog-desc"><%= article.description %></div>
+  
+      <div class="blog-each-btn">
+        <a class="blog-each-btn-a" href="/dashboard/articles/<%= article.slug %>">Read More</a>
+        <a href="/dashboard/articles/edit/<%= article.id %>" class="blog-each-btn-a">Edit</a>
+        <form
+          action="/dashboard/articles/<%= article.id %>?_method=DELETE"
+          method="POST"
+          class=""
+        >
+          <input type="submit" class="blog-btn-delete" value="Delete"/>
+      </div>
+      </form>
+    </div>
+    <% }) %>
+  
+  </div>

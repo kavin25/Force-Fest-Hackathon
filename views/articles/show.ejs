@@ -1,0 +1,38 @@
+<div class="nav-out">
+  <div class="navbar">
+    <div class="logo">
+      <img src="/../../images/logo" alt="onno the image didnt load" />
+    </div>
+    <div class="links">
+      <a class="nav-link" id="page" href="/">Home</a>
+      <a class="nav-link" href="/about">About</a>
+      <a class="nav-link" href="/users/logout">Logout</a>
+    </div>
+  </div>
+</div>
+<div style="margin-left: 4rem">
+  <h1 style="font-size: 2.5rem; margin-bottom: 1rem"><%= article.title %></h1>
+
+  <div style="margin-bottom: 1rem">
+    <%= article.createdAt.toLocaleDateString() %>
+  </div>
+  <a href="/dashboard/articles" class="articles-btn">All Blogs</a>
+  <a href="/dashboard/articles/edit/<%= article.id %>" class="articles-btn"
+    >Edit</a
+  >
+
+  <h2 style="margin-top: 1.3rem; margin-bottom: 1.3rem">
+    <%= article.description %>
+  </h2>
+
+  <div
+    style="
+      height: 1.5px;
+      width: 80%;
+      background-color: black;
+      margin-bottom: 2rem;
+    "
+  ></div>
+
+  <p><%- article.sanitizedHtml %></div>
+</div>

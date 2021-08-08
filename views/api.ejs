@@ -1,0 +1,147 @@
+<div class="nav-out">
+  <div class="navbar">
+    <div class="logo">
+      <img src="../images/logo" alt="onno the image didnt load" />
+    </div>
+    <div class="links">
+      <a class="nav-link" href="/">Home</a>
+      <a class="nav-link" href="/about">About</a>
+      <a class="nav-link" href="/users/logout">Logout</a>
+    </div>
+  </div>
+</div>
+<div class="left-nav">
+  <div class="left-nav-div">
+    <a href="/dashboard/">Dashboard</a>
+    <a href="/dashboard/transport">Transport</a>
+    <a id="page" href="/dashboard/vaccination">Vaccination</a>
+    <!-- <a href="/dashboard/contact">Contact</a> -->
+    <a href="/dashboard/schedule">Notification</a>
+    <a href="/dashboard/articles">Promotions</a>
+  </div>
+</div>
+<div class="dash-main-div-heading">
+  <h1>Vaccination</h1>
+  <p>Welcome, <%= data.user.name %></p>
+</div>
+
+<form class="api-form" action="">
+  <p style="font-size: 1.3rem; padding-top: 0.5rem; padding-bottom: 0.5rem">
+    Find all the centers for the next week
+  </p>
+
+  <div class="api-form-div">
+    <label for="number">Enter your pincode</label>
+    <br />
+    <input
+      placeholder="Enter your Pin"
+      class="api-pin"
+      type="number"
+      name="number"
+      id="number"
+    />
+  </div>
+
+  <input class="api-submit" type="submit" value="Enter" />
+
+  <div style="color: red; padding-top: 1rem" class="api-data"></div>
+</form>
+
+<div class="data-center"></div>
+<div class="data-api"></div>
+
+<script>
+  const form = document.querySelector("form");
+  const apiData = document.querySelector(".api-data");
+  const divData = document.querySelector(".data-api");
+  const centerss = document.querySelector(".data-center");
+
+  const today = new Date();
+  const date =
+    today.getDate() + "-" + (today.getMonth() + 1) + "-" + today.getFullYear();
+
+  form.addEventListener("submit", function (event) {
+    const pincode = document.querySelector("#number").value;
+    event.preventDefault();
+    fetch(
+      `https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByPin?pincode=${pincode}&date=${date}`
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        divData.innerHTML = "";
+
+        if (data.error === "Input parameter missing") {
+          apiData.textContent = "Please enter a vaild pincode";
+          divData.innerHTML = "";
+        } else if (data.error === "Invalid Pincode") {
+          apiData.textContent = "Wrong Pincode!";
+          divData.innerHTML = "";
+        } else if (data.centers.length === 0) {
+          apiData.textContent = "Sorry! We could not find any results";
+          divData.innerHTML = "";
+        } else if (data.centers.length > 0) {
+          apiData.textContent = "";
+          for (let i = 0; i < data.centers.length; i++) {
+            const div = document.createElement("div");
+            div.innerHTML = `
+            <h1 style="text-align: center; padding-top: 2rem; padding-bottom: 2rem;">Center: ${
+              i + 1
+            }</h1>
+            <div class="center-div-data">
+            Center name: ${data.centers[i].name} <br />
+            Address: ${data.centers[i].address}<br />
+            District: ${data.centers[i].district_name}<br />
+            State: ${data.centers[i].state_name}<br />
+            Timings: ${data.centers[i].from} - ${data.centers[i].to}<br />
+            Fees: ${data.centers[i].fee_type} <br />
+            ${
+              data.centers[i].fee_type === "Free"
+                ? ""
+                : "Amount: Rs " +
+                  data.centers[i].vaccine_fees[0].fee +
+                  "(" +
+                  data.centers[i].vaccine_fees[0].vaccine +
+                  ")"
+            }
+            </div>
+
+            <br />
+            <br />
+            `;
+
+            divData.appendChild(div);
+
+            const godlevelSession = [data.centers[i].sessions];
+            godlevelSession.forEach((element) => {
+              for (let i = 0; i < element.length; i++) {
+                const div1 = document.createElement("div");
+                div1.innerHTML = `
+                <h1 style="text-align: center; padding-top: 1rem; padding-bottom: 1rem;">Session ${
+                  i + 1
+                }</h1>
+                <div class = "api-sessions-data">
+                Date: ${element[i].date} <br />
+                Vaccine: ${element[i].vaccine} <br />
+                Total Doses: ${element[i].available_capacity} <br />
+                Vaccine 1 doses available: ${
+                  element[i].available_capacity_dose1
+                } <br />
+                Vaccine 2 doses available: ${
+                  element[i].available_capacity_dose2
+                }<br />
+                Slot: ${element[i].slots + "<br>"}
+
+                </div>
+
+                <br />
+                <br />
+                `;
+
+                divData.appendChild(div1);
+              }
+            });
+          }
+        }
+      });
+  });
+</script>

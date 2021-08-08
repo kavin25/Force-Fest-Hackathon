@@ -1,14 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300&display=swap");
+
 * {
   box-sizing: border-box;
   margin: 0;
 }
 
-img {
-  border: 1px solid black;
-}
 body {
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
+  font-family: "Nunito Sans", sans-serif;
   background-color: #f5f5f5;
 }
 .nav-out {
@@ -16,10 +14,11 @@ body {
   position: fixed;
   top: 0;
   width: 100%;
+  margin-bottom: 2rem;
 }
 
 #page {
-  text-decoration: underline;
+  font-weight: bold;
 }
 
 .navbar {
@@ -28,9 +27,9 @@ body {
 }
 
 .logo img {
-  height: 3.5rem;
+  height: 5rem;
   border-radius: 10px;
-  margin-left: 7rem;
+  margin-left: 2.5rem;
   cursor: pointer;
 }
 
@@ -53,17 +52,16 @@ body {
 
 .nav-link {
   text-decoration: none;
-  /* background-color: red; */
   padding: 0.5rem 1rem;
   margin-left: 0.7rem;
   border-radius: 5px;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   color: #333;
 }
 
 .nav-link:hover {
   transition-duration: 0.7s;
-  background-color: #ffd300;
+  background-color: #8dd1c6;
   color: whitesmoke;
 }
 
@@ -72,31 +70,30 @@ body {
 .main {
   display: flex;
   justify-content: space-around;
-  margin-top: 3rem;
-  padding-top: 7rem;
+  /* margin-top: 2rem; */
+  padding-top: 8rem;
 }
-
+/* 
 .main-title {
-  width: 40%;
   text-align: center;
-  margin-top: auto;
-  margin-bottom: auto;
+  display: flex;
+  align-self: center;
+  flex-direction: column;
 }
 
 .main-title h1 {
   font-size: 3rem;
-  margin-bottom: 3rem;
-}
+} */
 
-.main-img img {
-  border: 1px solid black;
+.main-img {
+  width: 85%;
 }
 
 .main2 {
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin-top: 3rem;
+  /* margin-top: 3rem; */
   cursor: pointer;
   text-decoration: none;
   color: #333;
@@ -105,7 +102,7 @@ body {
 
 .section-2-boxes h1 {
   margin-top: 8rem;
-  margin-bottom: 5rem;
+  margin-bottom: 3rem;
   text-align: center;
 }
 
@@ -120,26 +117,30 @@ body {
   /* border: 1px solid black; */
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
     rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
-  margin-bottom: 6rem;
+  margin-bottom: 8rem;
+  border-radius: 10px;
 }
 
 .first-row-box-1-text {
   padding: 1rem;
+  text-align: center;
 }
 
 .first-row-box-1 img {
   width: 100%;
   border-bottom: 1px solid black;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
 .horizontal-box {
   display: flex;
-  background-color: #ffd300;
-  color: whitesmoke;
+  background-color: #8dd1c6;
+  color: #333;
 }
 
 .img-left-box img {
-  height: 25rem;
+  height: 100%;
 }
 
 .img-right-box {
@@ -152,12 +153,13 @@ body {
 
 .img-right-box p {
   margin-top: 2rem;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   line-height: 1.7;
+  font-weight: bold;
 }
 
 .test-box {
-  border: 1px solid black;
+  border: 1px solid #8dd1c6;
   display: flex;
   justify-content: center;
   align-self: center;
@@ -173,11 +175,11 @@ body {
 .testimonials-h1 {
   text-align: center;
   margin-bottom: 5.5rem;
-  margin-top: 5rem;
+  margin-top: 3rem;
 }
 
 .testi-img {
-  width: 10rem;
+  height: 7rem;
   margin-top: -3.25rem;
   border-radius: 50%;
 }
@@ -198,7 +200,7 @@ body {
 .prev-btn {
   margin-top: 100%;
   cursor: pointer;
-  border: 1px solid orange;
+  border: 1px solid #8dd1c6;
   padding: 1rem 0.5rem;
   border-radius: 50%;
   outline: none;
@@ -210,7 +212,7 @@ body {
 .prev-btn:hover,
 .next-btn:hover {
   transition-duration: 0.5s;
-  background-color: orange;
+  background-color: #8dd1c6;
   color: whitesmoke;
 }
 
@@ -258,6 +260,6 @@ body {
 
 .footer {
   margin-top: 5rem;
-  background-color: #ffd300;
-  color: whitesmoke;
+  background-color: #8dd1c6;
+  color: white;
 }

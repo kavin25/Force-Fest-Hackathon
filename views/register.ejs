@@ -1,6 +1,20 @@
+<div class="nav-out">
+  <div class="navbar">
+    <div class="logo">
+      <img src="../images/logo" alt="onno the image didnt load" />
+    </div>
+    <div class="links">
+      <a class="nav-link" href="/">Home</a>
+      <a class="nav-link" href="/about">About</a>
+      <a class="nav-link" href="/users/login">Login</a>
+      <a id="page"  class="nav-link" href="/users/register">Signup</a>
+    </div>
+  </div>
+</div>    
+    
     <div class="login-card-out">
       <h1 style="text-align: center" class="login-h1">
-        <i class="fas fa-user-plus"></i> Register
+       Register
       </h1>
       <%- include ("./partials/messages"); %>
       <div class="login-card">
@@ -49,30 +63,6 @@
               value="<%= typeof password2 != 'undefined' ? password2 : '' %>"
             />
           </div>
-          <div class="login-div">
-          <label for="person">Select</label>
-          <select class="login-input" name="person" id="person">
-            <option value="student">Student</option>
-            <option value="Teacher">Teacher</option>
-          </select>
-        </div>
-        
-        <div class="login-div">
-          <label for="teacherSub">Select a Subject(Only for Teachers)</label>
-          <select class="login-input" name="teacherSub" id="teacherSub" value="<% typeof teacherSub != 'undefined' ? teacherSub : '' %>">
-            <option value="" disabled selected hidden>Choose a Subject</option>
-            <option value="Hindi">Hindi</option>
-            <option value="English">English</option>
-            <option value="Maths">Maths</option>
-            <option value="Science">Science</option>
-            <option value="SST">SST</option>
-            <option value="French">French</option>
-            <option value="German">German</option>
-            <option value="Spanish">Spanish</option>
-            <option value="Sanskrit">Sanskrit</option>
-          </select>
-  
-        </div>
           <button type="submit" class="login-submit-btn">
             Register
           </button>

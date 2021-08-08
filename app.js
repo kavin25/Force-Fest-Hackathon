@@ -1,25 +1,20 @@
 const express = require("express");
 const expressLayouts = require("express-ejs-layouts");
 const mongoose = require("mongoose");
-const db = require("./config/keys").MongoURI;
 const app = express();
 const flash = require("connect-flash");
 const PORT = process.env.PORT || 5000;
 const session = require("express-session");
 const passport = require("passport");
+const { ensureAuthenticated } = require("./config/auth");
+const router = express.Router();
+const Article = require("./models/article");
+const methodOverride = require("method-override");
 
 require("./config/passport")(passport);
 
-// Connect to mongo
-mongoose
-  .connect(db, { useNewUrlParser: true }, { useUnifiedTopology: true })
-  .then(() => console.log("mongoDB Conntected..."))
-  .catch((err) => console.log(err));
-
-// Body Parser
 app.use(express.urlencoded({ extended: false }));
 
-// Express Session
 app.use(
   session({
     secret: "secret",
@@ -31,10 +26,8 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Conntect Flash
 app.use(flash());
 
-// global Vars
 app.use(function (req, res, next) {
   res.locals.success_msg = req.flash("success_msg");
   res.locals.error_msg = req.flash("error_msg");
@@ -42,11 +35,11 @@ app.use(function (req, res, next) {
   next();
 });
 
-// EJS
 app.use(expressLayouts);
 app.set("view engine", "ejs");
+app.use(methodOverride("_method"));
 
-app.get("/dashboard", require("./routes/index.js"));
+app.use("/dashboard", require("./routes/index.js"));
 
 app.get("/", function (req, res) {
   res.sendFile(__dirname + "/public/html/main.html");

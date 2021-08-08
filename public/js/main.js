@@ -56,7 +56,7 @@ class Person {
 let counter = 0;
 
 const customer0 = new Person(
-  `../images/customer-0.jpg`,
+  `../images/boy-testi`,
   "Jorem ipsum dolor sit amet consectetur adipisicing elit. Officiis neque reprehenderit laborum, corporis explicabo assumenda. Porro impedit consectetur animi, reprehenderit recusandae sapiente at aliquam reiciendis modi ipsam rerum suscipit distinctio",
   "John"
 );

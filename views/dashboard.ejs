@@ -1,120 +1,72 @@
-<div style="display: flex;justify-content: space-between;">
-    <div>
-        <h1 style="margin-left: 5rem; font-size: 2.5rem;" class="mt-4">Dashboard</h1>
-        <p style="margin-left: 5rem; font-size: 2rem;" class="lead mb-3">Welcome, <%= data.user.name %></p>    
+<div class="nav-out">
+  <div class="navbar">
+    <div class="logo">
+      <img src="../images/logo" alt="onno the image didnt load" />
     </div>
-    <div style="display: flex; justify-content: center; align-items: center; align-self: center; margin-left: auto;">
-        <a style="padding: 0.5rem 1.5rem; border-radius: 10px; color: whitesmoke; background-color: #333; text-decoration: none; margin-right: 10rem;" href="/users/logout">Logout</a>
+    <div class="links">
+      <a class="nav-link" href="/">Home</a>
+      <a class="nav-link" href="/about">About</a>
+      <a class="nav-link" href="/users/logout">Logout</a>
     </div>
+  </div>
 </div>
-
-
-<!-- <h1>this is the student data</h1>
-<% student.forEach(function(student){ %>
-    <li> <%= student.name %> -  <%= student.person %> teaches: <%= student.teacherSub %></li>
-<% }) %> -->
-
-<p id="hidden-p" hidden><%= data.user.name %></p>
-
-<div style="display: flex; justify-content: space-around;">
-    <div style="margin-top: 2rem;">
-        <% if(data.user.person === "student") { %>
-            <h1 style="margin-left: 1rem; margin-bottom: 1rem;">List of your Teachers</h1>
-            <% } %>
-        <% if(data.user.person === "student"){ %>
-            <% teacher.forEach(function(teacher){ %>
-                <li style="list-style: none; margin-left: 5rem; border: 1px solid black; padding: 1rem; margin: 1rem; width: 20rem;"><div>Teacher: <%= teacher.name %></div><div style="height: 1px; width: 80%; background-color: #333; margin-top: 0.5rem; margin-bottom: 0.5rem;"></div><div>Subject: <%= teacher.teacherSub %></siv></li> 
-                <% }) %>
-                <% } %>            
-    </div>
-    <div style="margin-top: 2.3rem">
-        <% if(data.user.person === "student"){ %>
-        <h1 style="margin-bottom: 2rem;">Chat with your Teachers</h1>
-        <% } else{ %>
-            <h1 style="margin-bottom: 2rem;">Chat with your Students</h1>
-            <% } %>
-    <form id="nameform">
-        <div class="form-group">
-            <label>Teacher's Name</label>
-            <input placeholder="Your Teacher's name" class="form-control" type="text" id="theirname">    
+<div class="dash-main">
+  <div class="dash-main-div-heading">
+    <h1>Dashboard</h1>
+    <p>Welcome, <%= data.user.name %></p>
+  </div>
+  <div class="dash-row">
+    <div class="dash-row-div">
+      <a
+        style="text-decoration: none; color: #333"
+        href="/dashboard/transport "
+      >
+        <div class="dash-row-div-1">
+          <img
+            class="dash-img"
+            src="../images/transport"
+            alt="image didnt load"
+          />
+          <h2>Transport</h2>
         </div>
-
-        <input class="btn btn-primary btn-block" type="submit">
-    </form>
-
-    <div id="messagediv" hidden>
-        <ul id="messages">
-            
-        </ul>
+      </a>
     </div>
-
-    <form id="form" hidden>
-        <div class="form-group">
-            <label>Message</label>
-            <input class="form-control" type="text" id="textinput">    
+    <div class="dash-row-div">
+      <a
+        style="text-decoration: none; color: #333"
+        href="/dashboard/vaccination "
+      >
+        <div class="dash-row-div-1">
+          <img
+            class="dash-img"
+            src="../images/vaccination"
+            alt="image didnt load"
+          />
+          <h2>Vaccination</h2>
         </div>
-    </form>
-
+      </a>
     </div>
+  </div>
+  <div style="margin-bottom: 4rem" id="dash-row2" class="dash-row">
+    <div class="dash-row-div">
+      <a style="text-decoration: none; color: #333" href="/dashboard/schedule ">
+        <div class="dash-row-div-1">
+          <img
+            class="dash-img"
+            src="../images/notification"
+            alt="image didnt load"
+          />
+          <h2>Notification</h2>
+        </div>
+      </a>
+    </div>
+    <div class="dash-row-div">
+      <a style="text-decoration: none; color: #333" href="/dashboard/articles">
+        <div class="dash-row-div-1">
+          <img class="dash-img" src="../images/blog" alt="image didnt load" />
+          <h2>Promotions</h2>
+        </div>
+      </a>
+    </div>
+  </div>
 </div>
-
-
-
-
-<script>
-var socket;
-
-var form = document.getElementById("form");
-var nameform = document.getElementById("nameform");
-
-var hiddenP = document.getElementById('hidden-p').textContent;
-console.log(hiddenP)
-
-var username = hiddenP;
-var theirname = '';
-
-nameform.onsubmit = function() {
-    theirname = document.getElementById("theirname").value;
-
-    document.getElementById("theirname").value = '';
-
-        document.getElementById("nameform").remove();
-
-    document.getElementById("form").hidden = false;
-    document.getElementById("messagediv").hidden = false;
-
-    try{
-        socket = new WebSocket('ws://localhost:8082/' + username + "/" + theirname);
-
-        socket.onmessage = function(e) {
-            var text = e.data;
-            var element = document.createElement("li");
-            element.appendChild(document.createTextNode(text));
-            document.getElementById("messages").appendChild(element);
-        };
-    }
-    catch (err){
-        console.log(err);
-    }
-
-    return false;
-}
-
-form.onsubmit = function() {
-    try{
-        socket.send(username.replace(" ", "%20") + ": " + document.getElementById("textinput").value);
-    }
-    catch (err){
-        console.log(err);
-    }
-
-    var text = document.getElementById("textinput").value;
-    var element = document.createElement("li");
-    element.appendChild(document.createTextNode(username + ": " + text)); //need to make this be different from other messages
-    document.getElementById("messages").appendChild(element);
-
-    document.getElementById("textinput").value = '';
-    return false;
-}
-
-</script>
