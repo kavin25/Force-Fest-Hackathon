@@ -11,6 +11,8 @@ const router = express.Router();
 const Article = require("./models/article");
 const methodOverride = require("method-override");
 
+const { MongoURI } = require("./config/keys");
+
 require("./config/passport")(passport);
 
 app.use(express.urlencoded({ extended: false }));
@@ -53,4 +55,9 @@ app.use("/users", require("./routes/users"));
 
 app.use(express.static("public"));
 
-app.listen(PORT, console.log(`server started on ${PORT}`));
+mongoose
+  .connect(MongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => {
+    app.listen(PORT, console.log(`server started on ${PORT}`));
+  })
+  .catch((err) => console.error(err.toString()));
