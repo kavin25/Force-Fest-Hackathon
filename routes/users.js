@@ -6,11 +6,11 @@ const bcrypt = require("bcryptjs");
 const passport = require("passport");
 
 router.get("/login", function (req, res) {
-  res.render("Login");
+  res.render("login");
 });
 
 router.get("/register", function (req, res) {
-  res.render("Register");
+  res.render("register");
 });
 
 // Register Handle
